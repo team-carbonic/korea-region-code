@@ -25,9 +25,9 @@ class KoreaRegionCode with _$KoreaRegionCode {
   String get eupmyeondongliName =>
       fullName.replaceFirst('$sidoName $sigunguName ', '');
 
-  String get sidoCode => code.substring(0, 2);
-  String get sigunguCode => code.substring(0, 5);
-  String get eupmyeondongCode => code.substring(0, 8);
+  String get codeTillSido => code.substring(0, 2);
+  String get codeTillSigungu => code.substring(0, 5);
+  String get codeTillEupmyeondong => code.substring(0, 8);
 
   factory KoreaRegionCode({
     required final String code,

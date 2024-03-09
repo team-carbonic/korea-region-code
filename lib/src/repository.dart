@@ -17,11 +17,11 @@ class KoreaRegionCodeRepository {
     );
   }
 
-  /// [sido]에 해당하는 시군구 목록을 반환한다.
+  /// [sido]에 해당하는, 사전순으로 정렬된 시군구 목록을 반환한다.
   static Future<List<KoreaRegionCode>> getSigungus(
     final KoreaRegionCode sido,
   ) async {
-    final sidoCode = sido.sidoCode;
+    final sidoCode = sido.codeTillSido;
     return (await _query(
       _getSigungusParameters(sidoCode),
     ))
@@ -30,12 +30,12 @@ class KoreaRegionCodeRepository {
     );
   }
 
-  /// [sigungu]에 해당하는 읍면동 수준의 목록을 반환한다.
+  /// [sigungu]에 해당하는, 사전순으로 정렬된 읍면동 목록을 반환한다.
   /// 리 단위를 포함하지 않는다.
   static Future<List<KoreaRegionCode>> getEupmyeondongs(
     final KoreaRegionCode sigungu,
   ) async {
-    final sigunguCode = sigungu.sigunguCode;
+    final sigunguCode = sigungu.codeTillSigungu;
     return (await _query(
       _getEupmyeondongsParameters(sigunguCode, includingLi: false),
     ))
@@ -44,11 +44,11 @@ class KoreaRegionCodeRepository {
     );
   }
 
-  /// [sigungu]에 해당하는 가장 작은 단위의 지역 목록을 반환한다.
+  /// [sigungu]에 해당하는, 사전순으로 정렬된 가장 작은 단위의 지역 목록을 반환한다.
   static Future<List<KoreaRegionCode>> getEupmyeondonglis(
     final KoreaRegionCode sigungu,
   ) async {
-    final sigunguCode = sigungu.sigunguCode;
+    final sigunguCode = sigungu.codeTillSigungu;
 
     final regions = await _query(
       _getEupmyeondongsParameters(sigunguCode, includingLi: true),
@@ -56,7 +56,7 @@ class KoreaRegionCodeRepository {
 
     final regionsGroupedByEupmyeondongCode = <String, List<KoreaRegionCode>>{};
     for (final region in regions) {
-      final eupmyeondongCode = region.eupmyeondongCode;
+      final eupmyeondongCode = region.codeTillEupmyeondong;
       if (regionsGroupedByEupmyeondongCode.containsKey(eupmyeondongCode)) {
         regionsGroupedByEupmyeondongCode[eupmyeondongCode]!.add(region);
       } else {
