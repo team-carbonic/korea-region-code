@@ -1,3 +1,3 @@
 ## 0.0.1
 
-* TODO: Describe initial release.
+- 법정동 조회 api를 사용하여 초기 구성 완료
