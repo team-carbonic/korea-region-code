@@ -31,4 +31,15 @@ void main() async {
     checkDuplication(eupmyeondongs);
     checkDuplication(eupmyeondonglis);
   });
+
+  test('시군구 포함 확인 함수 테스트', () {
+    expect(sidos.first.codeHasSigungu, false);
+    expect(sidos.first.codeHasEupmyeondong, false);
+
+    expect(sigungus.first.codeHasSigungu, true);
+    expect(sigungus.first.codeHasEupmyeondong, false);
+
+    expect(eupmyeondongs.first.codeHasSigungu, true);
+    expect(eupmyeondongs.first.codeHasEupmyeondong, true);
+  });
 }
